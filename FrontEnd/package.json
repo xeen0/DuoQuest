@@ -12,24 +12,28 @@
     "sandbox",
     "codesandbox"
   ],
-  "author": "Benjamin Miles <talk@benjaminmiles.com> (https://github.com/benjaminmiles)",
-  "repository": "github:benjaminmiles/react-three-vite",
+  "author": "Sahith Srivyshnav Mahadevapuram <sahithsrivyshnav@gmail.com> (https://github.com/xeen0)",
   "license": "MIT",
   "dependencies": {
     "@react-spring/three": "^9.7.3",
     "@react-three/drei": "9.83.8",
     "@react-three/fiber": "8.13.5",
     "@react-three/rapier": "^1.2.1",
+    "jotai": "^2.6.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-use-websocket": "^4.5.0",
+    "socket.io-client": "^4.7.4",
     "three": "^0.154.0"
   },
   "devDependencies": {
+    "@swc-jotai/react-refresh": "^0.1.0",
     "@vitejs/plugin-react": "^4.0.3",
     "leva": "^0.9.35",
     "vite": "^4.4.4"
   },
   "scripts": {
+    "start": "npm run dev",
     "dev": "vite --host",
     "sandbox": "APP_ENV=sandbox vite",
     "build": "vite build",

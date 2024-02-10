@@ -1,5 +1,4 @@
 import { Box, Edges } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
 import { RigidBody, vec3 } from "@react-three/rapier";
 import React, { useEffect, useRef } from "react";
 export const Floor = ({ position, type, player, id }) => {
@@ -15,10 +14,9 @@ export const Floor = ({ position, type, player, id }) => {
       );
     }, 1000);
   }, []);
-  useFrame(() => {});
   return (
     <RigidBody ref={rigidBodyRef} type={"kinematicPosition"}>
-      <Box args={[1, 1, 1]} castShadow receiveShadow>
+      <Box args={[10, 1, 10]} castShadow receiveShadow>
         {/* <axesHelper /> */}
         <meshPhysicalMaterial color={color} />
         <Edges color={color} />

@@ -11,16 +11,17 @@ import {
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
-import React, { Suspense } from "react";
-import { LevelOne } from "./Levels";
+import React, { Suspense, useEffect } from "react";
 import { NavigationControls } from "./Components/KeyboardsControls";
+import useWebSocket, {websocketAtom} from "./Hooks/useWebSocket";
+import { LevelOne } from "./Levels";
 const Experience = () => {
   return (
     <>
       <Sky sunPosition={[0, 1, 0]} inclination={0} azimuth={0.25} />
       <GizmoHelper />
       <Stars />
-      {/* <OrbitControls/> */}
+      <OrbitControls />
       <ambientLight />
       <axesHelper args={[5]} />
       <PerspectiveCamera position={[0, 100, 100]} lookAt={[0, -10, 0]} />
@@ -33,6 +34,7 @@ const Experience = () => {
 };
 
 const App = () => {
+  useWebSocket("ws://localhost:3000/");
   return (
     <NavigationControls>
       <Canvas
@@ -41,8 +43,8 @@ const App = () => {
           type: OrthographicCamera,
         }}
       >
-        <Suspense>
-          <Physics>
+        <Suspense >
+          <Physics debug>
             <Experience />
           </Physics>
         </Suspense>

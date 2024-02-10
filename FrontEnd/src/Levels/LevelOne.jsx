@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Floor } from "../Components/Floor";
 import Player from "../Components/player";
 
+import { playersAtom } from "../Atoms";
+import { useAtom } from "jotai";
 const LevelOne = () => {
-  const [ready, setReady] = useState(false);
-  let xLength = 10;
-  let zLength = 10;
+  const [players] = useAtom(playersAtom)
+  let xLength = 1;
+  let zLength = 1;
   let space = 1;
   let floorMap = Array.from({ length: xLength }, (_, rowIndex) =>
     Array.from({ length: zLength }, (_, colIndex) => ({
@@ -15,13 +17,13 @@ const LevelOne = () => {
       id: colIndex.toString() + rowIndex.toString(),
     }))
   ).flat();
-  useEffect(() => {
-    setTimeout(() => setReady(true), 2000);
-  }, []);
   return (
     <>
-      {ready && <Player color='blue' args={[1, 1, 1]} position={[0, 1, 0]} />}
-      {ready && <Player color='red' args={[1, 1, 1]} position={[-2, 1, 0]} />}
+      {
+        players && Object.values(players).map(({playerId,color, position}) => (
+          <Player color={color} position={position} playerId={playerId} key={playerId}/>
+        ))
+      }
       {floorMap.map((props, index) => (
         <Floor {...props} key={props.id} />
       ))}
